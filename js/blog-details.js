@@ -1,19 +1,20 @@
+const domain = "https://psitpops.ahaanmedia.com/cms/wp-json/wp/v2";
+
 const params = new URLSearchParams(window.location.search);
 
-const id = params.get("id");
+const postId = params.get("id");
 
-fetch(`/cms/wp-json/wp/v2/posts/${id}`)
-
+fetch(`${domain}/posts/${postId}?_embed`)
 .then(res => res.json())
-
 .then(post => {
 
-document.getElementById("blog-content").innerHTML = `
+document.getElementById("blogTitle").innerHTML = post.title.rendered;
 
-<h1>${post.title.rendered}</h1>
+if(post._embedded["wp:featuredmedia"]){
+document.getElementById("blogImage").src =
+post._embedded["wp:featuredmedia"][0].source_url;
+}
 
-${post.content.rendered}
-
-`;
+document.getElementById("blogContent").innerHTML = post.content.rendered;
 
 });
