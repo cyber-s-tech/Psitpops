@@ -1,6 +1,11 @@
 
 
-
+.font-darker{
+    font-family: "Darker Grotesque", sans-serif;
+}
+.font-dm{
+    font-family: "DM Sans", sans-serif;
+}
 .animate-slide{
 animation: slide 9s infinite;
 }
@@ -26,39 +31,3 @@ animation: slide 9s infinite;
 100% { transform: translateY(0); }
 }
 }
-.pulse-divider {
-    height: 1px;
-    background: #ffffff80;
-    animation: pulse 2s infinite;
-}
- 
-@keyframes pulse {
-    0% {
-        transform: scaleX(1)
-    }
- 
-    50% {
-        transform: scaleX(.85)
-    }
- 
-    100% {
-        transform: scaleX(1)
-    }
-}
- 
-.marquee {
-    display: flex;
-    width: max-content;
-    animation: marquee 18s linear infinite;
-}
- 
-@keyframes marquee {
-    0% {
-        transform: translateX(0);
-    }
- 
-    100% {
-        transform: translateX(-50%);
-    }
-}
- 
