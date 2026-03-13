@@ -1,16 +1,6 @@
-.hero{
-padding:120px 20px;
-text-align:center;
-background:linear-gradient(120deg,#6c4cff,#9b7bff);
-color:white;
-}
+@import "tailwindcss";
 
-.hero h1{
-font-size:48px;
-margin-bottom:10px;
-}
-
-.hero p{
-font-size:18px;
-opacity:0.9;
+@theme {
+  --font-darker: "Darker Grotesque", sans-serif;
+  --font-dm: "DM Sans", sans-serif;
 }
