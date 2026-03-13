@@ -1,22 +1,31 @@
+function initBlog(){
+ 
 const domain = "https://psitpops.ahaanmedia.com/cms/wp-json/wp/v2";
  
-/* FEATURED DEVOTIONALS */
  
-fetch(`${domain}/posts?_embed&categories=3`)
-.then(res=>res.json())
-.then(posts=>{
+/* FEATURED POSTS */
  
-const container=document.getElementById("featuredPosts");
-const template=document.getElementById("featuredTemplate");
+fetch(`${domain}/posts?_embed&categories=3&per_page=6`)
+.then(res => res.json())
+.then(posts => {
  
-posts.forEach(post=>{
+const container = document.getElementById("featuredPosts");
+const template = document.getElementById("featuredTemplate");
  
-const clone=template.content.cloneNode(true);
+if(!container || !template) return;
  
-clone.querySelector(".post-image").src=
+container.innerHTML="";
+ 
+posts.forEach(post => {
+ 
+const clone = template.content.cloneNode(true);
+ 
+if(post._embedded?.["wp:featuredmedia"]){
+clone.querySelector(".post-image").src =
 post._embedded["wp:featuredmedia"][0].source_url;
+}
  
-clone.querySelector(".post-category").innerText=
+clone.querySelector(".post-category").innerText =
 post._embedded["wp:term"][0][0].name;
  
 clone.querySelector(".post-title").innerHTML =
@@ -28,7 +37,7 @@ const excerpt = post.excerpt.rendered
  
 clone.querySelector(".post-excerpt").innerText = excerpt;
  
-clone.querySelector(".post-link").href=
+clone.querySelector(".post-link").href =
 `blog-details.html?id=${post.id}`;
  
 container.appendChild(clone);
@@ -38,7 +47,7 @@ container.appendChild(clone);
 });
  
  
-/* EXPLORE BY TOPIC */
+/* TOPICS */
  
 fetch(`${domain}/categories`)
 .then(res => res.json())
@@ -47,7 +56,9 @@ fetch(`${domain}/categories`)
 const container = document.getElementById("topicsGrid");
 const template = document.getElementById("topicTemplate");
  
-container.innerHTML = "";
+if(!container || !template) return;
+ 
+container.innerHTML="";
  
 const topicOrder = [
 "Prayer",
@@ -57,8 +68,6 @@ const topicOrder = [
 "Christian Living",
 "Devotions"
 ];
- 
-/* sort categories */
  
 categories = categories
 .filter(cat => topicOrder.includes(cat.name))
@@ -79,9 +88,8 @@ const card = clone.querySelector(".topic-card");
 clone.querySelector(".topic-image").src = media.source_url;
 clone.querySelector(".topic-title").innerText = cat.name;
  
-card.href = `category.html?id=${cat.id}&name=${encodeURIComponent(cat.name)}`;
- 
-/* last row layout */
+card.href =
+`category.html?id=${cat.id}&name=${encodeURIComponent(cat.name)}`;
  
 if(index === 4 || index === 5){
 card.classList.add("md:col-span-2");
@@ -97,29 +105,36 @@ container.appendChild(clone);
  
 });
  
-/* LATEST ARTICLES */
+ 
+/* LATEST POSTS */
  
 fetch(`${domain}/posts?_embed&per_page=4`)
-.then(res=>res.json())
-.then(posts=>{
+.then(res => res.json())
+.then(posts => {
  
-const container=document.getElementById("latestPosts");
-const template=document.getElementById("latestTemplate");
+const container = document.getElementById("latestPosts");
+const template = document.getElementById("latestTemplate");
  
-posts.forEach(post=>{
+if(!container || !template) return;
  
-const clone=template.content.cloneNode(true);
+container.innerHTML="";
  
-clone.querySelector(".latest-image").src=
+posts.forEach(post => {
+ 
+const clone = template.content.cloneNode(true);
+ 
+if(post._embedded?.["wp:featuredmedia"]){
+clone.querySelector(".latest-image").src =
 post._embedded["wp:featuredmedia"][0].source_url;
+}
  
-clone.querySelector(".latest-category").innerText=
+clone.querySelector(".latest-category").innerText =
 post._embedded["wp:term"][0][0].name;
  
 clone.querySelector(".latest-title").innerHTML =
 post.title.rendered;
  
-clone.querySelector(".latest-excerpt").innerHTML=
+clone.querySelector(".latest-excerpt").innerHTML =
 post.excerpt.rendered;
  
 clone.querySelector(".author span").innerText =
@@ -128,12 +143,17 @@ post._embedded["author"][0].name;
 clone.querySelector(".date span").innerText =
 new Date(post.date).toLocaleDateString();
  
-clone.querySelector(".read-more").href=
+clone.querySelector(".read-more").href =
 `blog-details.html?id=${post.id}`;
  
 container.appendChild(clone);
  
 });
  
+});
+ 
+}
+document.addEventListener("DOMContentLoaded",function(){
+initBlog();
 });
  

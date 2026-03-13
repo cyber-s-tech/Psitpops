@@ -1,22 +1,216 @@
-<div class="bg-[#1F2A44] lg:p-20 md:p-12 p-5">
-        <div class="max-w-[1440px] mx-auto">
-            <div class="text-center lg:mb-[50px] md:mb-[40px] mb-8">
-                <h2
-                    class="font-bold text-white text-[28px] md:text-[40px] lg:text-[55px] leading-[50px] md:leading-[75px] tracking-[0]">
-                    Featured Devotionals
-                </h2>
-
-                <p class="font-medium lg:text-[20px] md:text-[16px] text-sm leading-[20px] text-[#d1d1d1]">
-                    Weekly reflections to encourage your spiritual journey.
-                </p>
-            </div>
-
-            <div id="card-row" class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-            <div class="text-center mt-12">
-                <button class="bg-[#C9A227] text-white px-[30px] py-[15px] rounded-[10px] font-semibold cursor-pointer">
-                    View All Articles
-                </button>
-            </div>
+<!doctype html>
+<html>
+  <head>
+    <title>Blog</title>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+ 
+    <link
+      href="https://fonts.googleapis.com/css2?family=Darker+Grotesque:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap%22
+      rel="stylesheet"
+    />
+  </head>
+ 
+  <body class="[font-family:'DM_Sans',sans-serif] bg-gray-100">
+    <div id="header"></div>
+ 
+    <!-- FEATURED DEVOTIONALS -->
+ 
+    <section class="bg-[#1F2A44] lg:p-20 md:p-12 p-5">
+      <div class="max-w-[1440px] mx-auto">
+        <div class="text-center lg:mb-[50px] md:mb-[40px] mb-8">
+          <h2
+            class="font-bold text-white text-[28px] md:text-[40px] lg:text-[55px] leading-[50px] md:leading-[75px]"
+          >
+            Featured Devotionals
+          </h2>
+ 
+          <p
+            class="font-medium lg:text-[20px] md:text-[16px] text-sm leading-[20px] text-[#d1d1d1]"
+          >
+            Weekly reflections to encourage your spiritual journey.
+          </p>
         </div>
-    </div>
+ 
+        <div
+          id="featuredPosts"
+          class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+ 
+        <div class="text-center mt-12">
+          <a
+            href="all-blogs.html"
+            class="bg-[#C9A227] text-white px-[30px] py-[15px] rounded-[10px] font-semibold inline-block"
+          >
+            View All Articles
+          </a>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- FEATURED TEMPLATE -->
+ 
+    <template id="featuredTemplate">
+      <div class="bg-white rounded-[14px] overflow-hidden shadow-lg">
+        <div class="relative">
+          <img class="post-image w-full h-[220px] object-cover" />
+ 
+          <span
+            class="post-category absolute top-4 left-4 bg-[#C9A227] text-white text-xs px-3 py-1 rounded-full"
+          ></span>
+        </div>
+ 
+        <div class="p-6">
+          <h3 class="post-title text-[22px] font-bold mb-3 text-[#1F2A44]"></h3>
+ 
+          <p
+            class="post-excerpt text-sm text-gray-600 mb-4 leading-relaxed"
+          ></p>
+ 
+          <a class="post-link text-[#C9A227] font-semibold underline">
+            Read More
+          </a>
+        </div>
+      </div>
+    </template>
+ 
+    <!-- EXPLORE BY TOPIC -->
+ 
+    <section class="bg-[#F7F4EF] lg:p-20 md:p-12 p-5">
+      <div class="text-center lg:mb-[50px] md:mb-[40px] mb-8">
+        <h2
+          class="font-bold text-[#1F2A44] text-[28px] md:text-[40px] lg:text-[55px] leading-[50px] md:leading-[75px]"
+        >
+          Explore by Topic
+        </h2>
+ 
+        <p
+          class="font-medium lg:text-[20px] md:text-[16px] text-sm text-gray-500 mb-12"
+        >
+          Weekly reflections to encourage your spiritual journey.
+        </p>
+ 
+        <div
+          id="topicsGrid"
+          class="grid grid-cols-2 md:grid-cols-4 gap-5"
+        ></div>
+      </div>
+    </section>
+ 
+    <!-- TOPIC TEMPLATE -->
+ 
+    <template id="topicTemplate">
+      <a class="topic-card relative rounded-xl overflow-hidden group">
+        <img
+          class="topic-image w-full h-[275px] object-cover transition duration-500 group-hover:scale-110"
+        />
+ 
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent"
+        ></div>
+ 
+        <div
+          class="topic-title absolute bottom-4 left-1/2 -translate-x-1/2 text-white text-[30px] font-semibold text-center"
+        ></div>
+      </a>
+    </template>
+ 
+    <!-- LATEST ARTICLES -->
+ 
+    <section class="bg-[#23314f] py-24 px-[7%] text-white">
+      <div class="lg:mb-[50px] md:mb-[40px] mb-8 max-w-[1440px] mx-auto">
+        <h2
+          class="text-center font-bold text-[28px] md:text-[40px] lg:text-[55px]"
+        >
+          Latest Articles
+        </h2>
+ 
+        <p
+          class="text-center font-medium lg:text-[20px] md:text-[16px] text-sm mb-12"
+        >
+          Explore our most recent biblical reflections and devotionals.
+        </p>
+ 
+        <div id="latestPosts" class="grid md:grid-cols-2 gap-8"></div>
+        <div class="text-center mt-12">
+          <a
+            href="all-blogs.html"
+            class="bg-[#C9A227] text-white px-[30px] py-[15px] rounded-[10px] font-semibold inline-block"
+          >
+            View All Articles
+          </a>
+        </div>
+      </div>
+    </section>
+ 
+    <!-- LATEST TEMPLATE -->
+ 
+    <template id="latestTemplate">
+      <div class="bg-white rounded-xl overflow-hidden shadow-lg text-gray-800">
+        <div class="relative">
+          <img class="latest-image w-full h-[230px] object-cover" />
+ 
+          <span
+            class="latest-category absolute top-4 left-4 bg-[#e2b13c] text-white text-xs px-3 py-1 rounded-full"
+          ></span>
+        </div>
+ 
+        <div class="p-6">
+          <div class="flex items-center gap-6 text-sm text-[#e2b13c] mb-3">
+            <!-- AUTHOR -->
+ 
+            <span class="author flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4 fill-[#e2b13c]"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5
+      2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10
+      1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"
+                />
+              </svg>
+ 
+              <span></span>
+            </span>
+ 
+            <!-- DATE -->
+ 
+            <span class="date flex items-center gap-2">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-4 h-4 fill-[#e2b13c]"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1
+      0-2 .9-2 2v14c0 1.1.9 2
+      2 2h14c1.1 0 2-.9
+      2-2V6c0-1.1-.9-2-2-2zm0
+      16H5V9h14v11z"
+                />
+              </svg>
+ 
+              <span></span>
+            </span>
+          </div>
+ 
+          <div class="border-t border-gray-300 mb-4"></div>
+ 
+          <h3 class="latest-title text-2xl font-bold mb-2"></h3>
+ 
+          <p class="latest-excerpt text-sm text-gray-600 mb-3"></p>
+ 
+          <a class="read-more text-[#e2b13c] font-semibold underline">
+            Read More
+          </a>
+        </div>
+      </div>
+    </template>
+ 
+    <script src="js/blog.js"></script>
+  </body>
+</html>
+ 
+ 
