@@ -1,39 +1,44 @@
-<header class="absolute top-0 z-50 w-full py-4 ">
-  <div class=" mx-auto max-w-[1440px] ">
-    <div class="flex items-center justify-between px-6 md:px-12 lg:px-20 ">
+<header class="absolute top-0 z-50 w-full py-4">
+  <div class="mx-auto max-w-[1440px] px-4 md:px-8 lg:px-12 xl:px-20">
+    <div class="flex items-center justify-between">
+      
       <div class="flex h-12 flex-col justify-center">
-  <p class="font-darker text-5xl font-bold tracking-tight text-white leading-[0.8] -translate-y-1.5">
-    psitpops
-  </p>
-</div>
+        <p class="font-darker text-[32px] lg:text-[56px] font-bold tracking-tight text-white leading-[0.8] -translate-y-1.5">
+          psitpops
+        </p>
+      </div>
 
-    <!-- Navigation -->
-    <nav
-      class="hidden rounded-[10px] bg-white/10 p-[10px] backdrop-blur-md md:flex items-center gap-4 xl:gap-12 lg:gap-8 md:gap-6">
-      <a href="#"
-        class="rounded-[10px] bg-white/20 px-[20px] py-[10px] text-base font-medium text-white transition-all leading-none">Home</a>
-      <a href="#"
-        class="px-[20px] py-[10px] text-base font-medium text-white/80 hover:text-white leading-none">About</a>
-      <a href="#" class="px-[20px] py-[10px] text-base font-medium text-white/80 hover:text-white leading-none">Blog</a>
-      <a href="#"
-        class="px-[20px] py-[10px] text-base font-medium text-white/80 hover:text-white leading-none">Contact</a>
-    </nav>
+      <nav class="hidden sm:flex items-center gap-1 rounded-xl bg-white/10 p-1.5 backdrop-blur-md border border-white/10">
+        <a href="#" class="rounded-lg bg-white/20 px-4 py-2 text-sm font-medium text-white transition-all">Home</a>
+        <a href="#" class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors">About</a>
+        <a href="#" class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors">Blog</a>
+        <a href="#" class="px-4 py-2 text-sm font-medium text-white/70 hover:text-white transition-colors">Contact</a>
+      </nav>
 
-    <!-- Buttons -->
-    <div class="flex items-center gap-3">
-      <button
-        class="flex h-13 w-13 items-center justify-center rounded-lg bg-white text-slate-900 transition hover:bg-slate-100">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
-          <path
-            d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z">
-          </path>
-        </svg>
-      </button>
-      <button
-        class="rounded-lg bg-[#C5A02E] px-[30px] py-[15px] text-base font-semibold text-white transition-opacity hover:opacity-90">
-        Subscribe
-      </button>
+      <div class="flex items-center gap-3">
+        <button class="flex h-9 w-9 items-center justify-center rounded-lg bg-white text-slate-900 transition hover:bg-slate-100 shadow-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+          </svg>
+        </button>
+        <button class="hidden sm:block rounded-lg bg-[#C5A02E] px-5 py-2.5 text-sm font-semibold text-white transition hover:brightness-110">
+          Subscribe
+        </button>
+
+        <button id="mobile-menu-btn" class="sm:hidden flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white border border-white/20">
+          <svg id="menu-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
+
+  <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-slate-900/95 backdrop-blur-xl border-t border-white/10 p-6 flex-col gap-4 text-center sm:hidden">
+    <a href="#" class="text-lg font-medium text-white py-2 border-b border-white/5">Home</a>
+    <a href="#" class="text-lg font-medium text-white/70 py-2 border-b border-white/5">About</a>
+    <a href="#" class="text-lg font-medium text-white/70 py-2 border-b border-white/5">Blog</a>
+    <a href="#" class="text-lg font-medium text-white/70 py-2">Contact</a>
+    <button class="mt-4 rounded-lg bg-[#C5A02E] px-5 py-3 text-base font-semibold text-white">Subscribe</button>
   </div>
 </header>
