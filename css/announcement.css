@@ -1,11 +1,6 @@
 
 
-.font-darker{
-    font-family: "Darker Grotesque", sans-serif;
-}
-.font-dm{
-    font-family: "DM Sans", sans-serif;
-}
+
 .animate-slide{
 animation: slide 9s infinite;
 }
@@ -31,19 +26,6 @@ animation: slide 9s infinite;
 100% { transform: translateY(0); }
 }
 }
-
-
-
- 
-.font-darker {
-    font-family: "Darker Grotesque", sans-serif;
-}
- 
-.font-dm {
-    font-family: "DM Sans", sans-serif;
-}
- 
- 
 .pulse-divider {
     height: 1px;
     background: #ffffff80;
