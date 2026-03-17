@@ -1,35 +1,38 @@
-
-
- 
 .font-darker {
     font-family: "Darker Grotesque", sans-serif;
 }
- 
+
 .font-dm {
     font-family: "DM Sans", sans-serif;
 }
- 
- 
+
+
 .pulse-divider {
     height: 1px;
     background: #ffffff80;
     animation: pulse 2s infinite;
 }
- 
+
 @keyframes pulse {
     0% {
         transform: scaleX(1)
     }
- 
+
     50% {
         transform: scaleX(.85)
     }
- 
+
     100% {
         transform: scaleX(1)
     }
 }
- 
+
+.marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 8s linear infinite;
+}
+
 .marquee {
     display: flex;
     width: max-content;
@@ -45,4 +48,3 @@
         transform: translate(-40%);
     }
 }
- 
