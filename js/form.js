@@ -1,91 +1,150 @@
+
+
+
+let num1, num2, correctAnswer;
+
+function generateCaptcha(){
+num1 = Math.floor(Math.random() * 10) + 1;
+num2 = Math.floor(Math.random() * 10) + 1;
+correctAnswer = num1 + num2;
+
+const question = document.getElementById("captchaQuestion");
+if(question){
+question.textContent = `${num1} + ${num2} = ?`;
+}
+}
+
+document.addEventListener("DOMContentLoaded", generateCaptcha);
+
+
+// HELPER FUNCTIONS
+function showError(input, message, errorEl){
+input.classList.add("border-red-500");
+errorEl.textContent = message;
+errorEl.classList.remove("hidden");
+}
+
+function clearError(input, errorEl){
+input.classList.remove("border-red-500");
+errorEl.textContent = "";
+errorEl.classList.add("hidden");
+}
+
+
 document.addEventListener("submit", function(e){
 
 if(e.target.id !== "contactForm") return;
 
+e.preventDefault(); // ✅ STOP page reload immediately
+
 const form = e.target;
 
-const fnameField = form.querySelector("#firstname");
-const lnameField = form.querySelector("#lastname");
-const emailField = form.querySelector("#email");
-const phoneField = form.querySelector("#phone");
-const selectField = form.querySelector("#select");
-const errorMsg = form.querySelector("#errorMsg");
+const fname = form.querySelector("#firstname");
+const lname = form.querySelector("#lastname");
+const email = form.querySelector("#email");
+const phone = form.querySelector("#phone");
+const select = form.querySelector("#select");
+const captcha = form.querySelector("#captchaInput");
 
-errorMsg.textContent = "";
+// error elements
+const fnameError = form.querySelector("#fnameError");
+const lnameError = form.querySelector("#lnameError");
+const emailError = form.querySelector("#emailError");
+const phoneError = form.querySelector("#phoneError");
+const selectError = form.querySelector("#selectError");
+const captchaError = form.querySelector("#captchaError");
 
-// TRIM VALUES
-const fnameValue = fnameField.value.trim();
-const lnameValue = lnameField.value.trim();
-const emailValue = emailField.value.trim();
-const phoneValue = phoneField.value.trim();
-const selectValue = selectField.value.trim();
-
-
-// REQUIRED FIELD CHECK
-if(fnameValue === "" || lnameValue === "" || emailValue === "" || phoneValue === ""|| selectValue ===""){
-e.preventDefault();
-errorMsg.textContent = "Please fill out all fields";
-return;
-}
-
-
-// NAME VALIDATION
-const namePattern = /^[A-Za-z\s]+$/;
-
-if(!namePattern.test(fnameValue)){
-e.preventDefault();
-errorMsg.textContent = "Name should contain only letters";
-return;
-}
-
-if(!namePattern.test(lnameValue)){
-e.preventDefault();
-errorMsg.textContent = "Name should contain only letters";
-return;
-}
-
-
-// EMAIL VALIDATION
-const emailPattern = /^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com)$/;
-
-if(!emailPattern.test(emailValue)){
-e.preventDefault();
-errorMsg.textContent = "Invalid or unsupported email provider";
-return;
-}
-
-
-// PHONE VALIDATION
-if(!/^\+?[0-9]+$/.test(phoneValue)){
-e.preventDefault();
-errorMsg.textContent = "Phone must contain only numbers and optional '+' at start";
-return;
-}
-
-if((phoneValue.match(/\+/g) || []).length > 1){
-e.preventDefault();
-errorMsg.textContent = "Only one '+' allowed";
-return;
-}
-
-if(phoneValue.includes("+") && !phoneValue.startsWith("+")){
-e.preventDefault();
-errorMsg.textContent = "'+' must be at the beginning";
-return;
-}
-if(phoneValue.length > 16){
-e.preventDefault();
-errorMsg.textContent = "Phone number too long";
-return;
-}
-
-if(phoneValue.length < 5){
-e.preventDefault();
-errorMsg.textContent = "Phone number too short";
-return;
-}
+// clear all errors
+[fname,lname,email,phone,select,captcha].forEach(el=>el.classList.remove("border-red-500"));
+[fnameError,lnameError,emailError,phoneError,selectError,captchaError].forEach(el=>{
+el.textContent="";
+el.classList.add("hidden");
 });
 
+let isValid = true;
+
+// REQUIRED
+if(!fname.value.trim()){
+showError(fname,"First name required",fnameError);
+isValid = false;
+}
+
+if(!lname.value.trim()){
+showError(lname,"Last name required",lnameError);
+isValid = false;
+}
+
+if(!email.value.trim()){
+showError(email,"Email required",emailError);
+isValid = false;
+}
+
+if(!phone.value.trim()){
+showError(phone,"Phone required",phoneError);
+isValid = false;
+}
+
+if(!select.value){
+showError(select,"Please select option",selectError);
+isValid = false;
+}
+
+// NAME
+if(fname.value && !/^[A-Za-z\s]+$/.test(fname.value)){
+showError(fname,"Only letters allowed",fnameError);
+isValid = false;
+}
+
+if(lname.value && !/^[A-Za-z\s]+$/.test(lname.value)){
+showError(lname,"Only letters allowed",lnameError);
+isValid = false;
+}
+
+// EMAIL
+if(email.value && !/^[a-zA-Z0-9._%+-]+@(gmail\.com|yahoo\.com|outlook\.com|hotmail\.com)$/.test(email.value)){
+showError(email,"Invalid email",emailError);
+isValid = false;
+}
+
+// PHONE
+if(phone.value && !/^\+?[0-9]+$/.test(phone.value)){
+showError(phone,"Phone must contain only numbers",phoneError);
+isValid = false;
+}
+if((phone.value.match(/\+/g) || []).length > 1){
+showError(phone,"Only one '+' allowed",phoneError);
+isValid = false;
+}
+if(phone.value.includes("+") && !phone.value.startsWith("+")){
+showError(phone,"+ must be at the beginning",phoneError);
+isValid = false;
+}
+if(phone.value.length < 5 || phone.value.length > 16){
+showError(phone,"Phone length invalid",phoneError);
+isValid = false;
+}
+
+// CAPTCHA (ONLY IF OTHER VALID)
+if(isValid){
+if(parseInt(captcha.value) !== correctAnswer){
+showError(captcha,"Wrong answer",captchaError);
+generateCaptcha();
+isValid = false;
+}
+}
+
+// FINAL
+if(!isValid){
+return;
+}
+
+// SUCCESS
+e.preventDefault();
+alert("Form submitted successfully!");
+
+generateCaptcha();
+
+});
 
 // PHONE INPUT FILTER (LIVE TYPING)
 document.addEventListener("input", function(e){
