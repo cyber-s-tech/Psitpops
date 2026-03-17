@@ -30,10 +30,12 @@ errorEl.textContent = "";
 errorEl.classList.add("hidden");
 }
 
+let captchaVisible = false;
 
 document.addEventListener("submit", function(e){
 
 if(e.target.id !== "contactForm") return;
+
 
 e.preventDefault(); // ✅ STOP page reload immediately
 
@@ -124,25 +126,27 @@ showError(phone,"Phone length invalid",phoneError);
 isValid = false;
 }
 
-// CAPTCHA (ONLY IF OTHER VALID)
-if(isValid){
+// 👉 STEP: SHOW CAPTCHA ONLY AFTER VALID FORM
+if(isValid && !captchaVisible){
+captchaWrapper.classList.remove("hidden");
+generateCaptcha();
+captchaVisible = true;
+return; // stop here, wait for next submit
+}
+
+// 👉 STEP: VALIDATE CAPTCHA
+if(captchaVisible){
 if(parseInt(captcha.value) !== correctAnswer){
 showError(captcha,"Wrong answer",captchaError);
 generateCaptcha();
-isValid = false;
-}
-}
-
-// FINAL
-if(!isValid){
 return;
 }
+}
 
+
+captchaWrapper.classList.add("hidden");
+captchaVisible = false;
 // SUCCESS
-e.preventDefault();
-alert("Form submitted successfully!");
-
-generateCaptcha();
 
 });
 

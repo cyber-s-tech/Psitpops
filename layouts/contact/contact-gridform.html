@@ -78,14 +78,15 @@
                     <p id="captchaError" class="text-red-500 text-lg font-darker font-medium"></p>
 
                     <!-- CAPTCHA -->
-                    <div class="flex flex-col gap-[8px] md:col-span-2">
-                        <label class="font-medium xl:text-xl items-center">
-                            Captcha: <span id="captchaQuestion"></span>
-                        </label>
+                    <!-- CAPTCHA -->
+<div id="captchaWrapper" class="hidden flex flex-col gap-[8px] md:col-span-2">
+    <label class="font-medium xl:text-xl">
+        Captcha: <span id="captchaQuestion"></span>
+    </label>
 
-                        <input id="captchaInput" type="text" placeholder="Your Answer"
-                            class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none" />
-                    </div>
+    <input id="captchaInput" type="text" placeholder="Your Answer"
+        class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none" />
+</div>
 
                     <!-- Button -->
                     <div class="md:col-span-2">
