@@ -1,0 +1,100 @@
+<div class="space-y-6">
+  <!-- SEARCH -->
+  <div class="bg-white rounded-xl shadow p-6 border-1">
+    <h3 class="font-semibold mb-3 border-b-1 text-[35px]">Search Blog</h3>
+
+    <div class="flex gap-2">
+      <input
+        id="searchBlog"
+        class="border rounded px-3 py-2 w-full"
+        placeholder="Search by title"
+      />
+
+      <button class="bg-[#C9A227] text-white px-4 rounded">Search</button>
+    </div>
+  </div>
+
+  <!-- WEEKLY DEVOTION -->
+  <div class="bg-white rounded-xl shadow p-6 border-1">
+    <h3 class="font-semibold mb-3 border-b-1 text-[35px]">Receive Weekly Devotions</h3>
+
+    <form id="subscribeForm" class="space-y-5">
+      <div>
+
+        <input
+          required
+          type="text"
+          placeholder="Your Name"
+          class="w-full border-1 rounded-[10px] px-5 py-5 mt-2 outline-none"
+        />
+      </div>
+
+      <div>
+
+        <input
+          required
+          type="email"
+          placeholder="Enter your email"
+          class="w-full border-1 rounded-[10px] px-5 py-5 mt-2 outline-none"
+        />
+      </div>
+
+      <div>
+
+
+        <input
+          required
+          type="tel"
+          inputmode="numeric"
+          pattern="[0-9]*"
+          placeholder="Enter your phone"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          class="w-full border-1 rounded-[10px] px-5 py-5 mt-2 outline-none"
+        />
+      </div>
+
+      <div>
+
+        <select
+          required
+          class="w-full border-1 rounded-[10px] px-5 py-5 mt-2 outline-none"
+        >
+          <option value="">Select Interest</option>
+          <option>Bible Study</option>
+          <option>Devotionals</option>
+          <option>Prayer</option>
+        </select>
+      </div>
+
+      <button
+        type="submit"
+        class="bg-[#C9A227] px-[30px] py-[15px] rounded-[10px] text-white font-semibold text-[16px] transition-all hover:bg-transparent hover:border hover:border-[#C9A227] hover:text-[#C9A227]"
+      >
+        Subscribe Now
+      </button>
+
+      <p id="thankMessage" class="text-green-400"></p>
+    </form>
+  </div>
+
+  <!-- FEATURED POSTS -->
+  <div class="bg-white rounded-xl shadow p-6 border-1">
+    <h3 class="font-semibold mb-4 border-b-1 text-[35px]">Featured Articles</h3>
+
+    <div id="sidebarPosts" class="space-y-3"></div>
+  </div>
+
+  <!-- BLOG TOPICS -->
+  <div class="bg-white rounded-xl shadow p-6 border-1">
+    <h3 class="font-semibold mb-4 border-b-1 text-[35px]">Blog Topics</h3>
+
+    <ul id="blogTopics" class="space-y-2 text-gray-600"></ul>
+  </div>
+
+  <!-- RECENT BLOGS -->
+  <div class="bg-white rounded-xl shadow p-6 border-1">
+    <h3 class="font-semibold mb-4 border-b-1 text-[35px]">Recent Blogs</h3>
+
+    <div id="recentPosts" class="space-y-3"></div>
+  </div>
+</div>
