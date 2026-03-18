@@ -2,120 +2,109 @@
     <div class="relative max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div class="relative flex flex-col gap-[10px]">
             <img src="/images/con-img.png" alt="" class="w-full h-full">
-            <h1 class="font-darker text-[35px] md:text-[55px] font-bold leading-tight text-[#1F2A44] lg:text-[75px] text-[#1F2A44]">
+            <h1
+                class="font-darker text-[35px] md:text-[55px] font-bold leading-tight text-[#1F2A44] lg:text-[75px] text-[#1F2A44]">
                 Send Us a Message
             </h1>
             <p class="text-sm md:text-base leading-relaxed text-[#1F2A44] lg:text-xl">
-       Have a question, suggestion, or message for us? Fill out the form <br/> below and we will get back to you soon.
-      </p>
+                Have a question, suggestion, or message for us? Fill out the form <br /> below and we will get back to
+                you soon.
+            </p>
         </div>
         <div class="relative">
-            <form id="contactForm" class="bg-[#F7F4EF] text-[#1F2A44] p-[20px] rounded-[20px] w-full max-w-[900px] shadow-[0_4px_44px_#0000001A]">
+            <form id="contactForm"
+                class="bg-[#F7F4EF] text-[#1F2A44] p-[20px] rounded-[20px] w-full max-w-[900px] shadow-[0_4px_44px_#0000001A]">
 
-<div class="grid grid-cols-1 md:grid-cols-2 gap-[15px]">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-[15px]">
 
-<!-- First Name -->
-<div class="flex flex-col gap-[8px]">
-<label class="font-medium xl:text-xl">First Name<span class="text-[#C9A227]">*</span></label>
-<input 
-id="firstname"
-type="text"
-placeholder="Your Name"
+                    <!-- First Name -->
+                    <div class="flex flex-col gap-[8px]">
+                        <label class="font-medium xl:text-xl">First Name<span class="text-[#C9A227]">*</span></label>
+                        <input id="firstname" type="text" placeholder="Your Name"
+                            class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none" />
+                        <p id="fnameError" class="text-red-500 text-lg font-darker font-medium"></p>
+                    </div>
 
-class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none"
-/>
+                    <!-- Last Name -->
+                    <div class="flex flex-col gap-[8px]">
+                        <label class="font-medium xl:text-xl">Last Name<span class="text-[#C9A227]">*</span></label>
+                        <input id="lastname" type="text" autoComplete="off" placeholder="Your Name"
+                            class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none" />
+                        <p id="lnameError" class="text-red-500 text-lg font-darker font-medium"></p>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="flex flex-col gap-[8px]">
+                        <label class="font-medium xl:text-xl">Email Address<span class="text-[#C9A227]">*</span></label>
+                        <input id="email" type="email" autoComplete="off" placeholder="Your Email"
+                            class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none" />
+                        <p id="emailError" class="text-red-500 text-lg font-darker font-medium"></p>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="flex flex-col gap-[8px]">
+                        <label class="font-medium xl:text-xl">Phone Number<span class="text-[#C9A227]">*</span></label>
+                        <input id="phone" type="tel" placeholder="Your Phone" autoComplete="off" inputMode="numeric"
+                            maxLength={16}
+                            class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none" />
+                        <p id="phoneError" class="text-red-500 text-lg font-darker font-medium"></p>
+                    </div>
+
+                    <!-- Interest -->
+                    <div class="flex flex-col gap-[8px] md:col-span-2">
+                        <label class="font-medium xl:text-xl">Interest<span class="text-[#C9A227]">*</span></label>
+
+                        <select id="select"
+                            class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none">
+
+                            <option value="">-------- Select --------</option>
+                            <option>Prayer</option>
+                            <option>Faith</option>
+                            <option>Bible Study</option>
+                            <option>Christian Living</option>
+
+                        </select>
+                        <p id="selectError" class="text-red-500 text-lg font-darker font-medium"></p>
+                    </div>
+
+                    <!-- Message -->
+                    <div class="flex flex-col gap-[8px] md:col-span-2">
+                        <label class="font-medium xl:text-xl">Message</label>
+
+                        <textarea rows="5" placeholder="Tell Us Something...."
+                            class="border border-[#1F2A44] rounded-[11px] px-2.5 pt-2.5 bg-transparent outline-none resize-none"></textarea>
+
+                    </div>
+                    <p id="captchaError" class="text-red-500 text-lg font-darker font-medium"></p>
+
+                    <!-- CAPTCHA -->
+                    <!-- CAPTCHA -->
+<div id="captchaWrapper" class="hidden flex flex-col gap-[8px] md:col-span-2">
+    <label class="font-medium xl:text-xl">
+        Captcha: <span id="captchaQuestion"></span>
+    </label>
+
+    <input id="captchaInput" type="text" placeholder="Your Answer"
+        class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none" />
 </div>
 
-<!-- Last Name -->
-<div class="flex flex-col gap-[8px]">
-<label class="font-medium xl:text-xl">Last Name<span class="text-[#C9A227]">*</span></label>
-<input 
-id="lastname"
-type="text"
-autoComplete="off"
-placeholder="Your Name"
+                    <!-- Button -->
+                    <div class="md:col-span-2">
 
-class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none"
-/>
-</div>
+                        <button type="submit" id="submit"
+                            class="w-full bg-[#C9A227] text-white border border-transparent font-semibold py-4 rounded-[10px] hover:bg-transparent hover:border-[#C9A227] hover:text-[#C9A227]">
 
-<!-- Email -->
-<div class="flex flex-col gap-[8px]">
-<label class="font-medium xl:text-xl">Email Address<span class="text-[#C9A227]">*</span></label>
-<input 
-id="email"
-type="email"
-autoComplete="off"
-placeholder="Your Email"
+                            Submit
 
-class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none"
-/>
-</div>
+                        </button>
 
-<!-- Phone -->
-<div class="flex flex-col gap-[8px]">
-<label class="font-medium xl:text-xl">Phone Number<span class="text-[#C9A227]">*</span></label>
-<input
-id="phone"
-type="tel"
-placeholder="Your Phone"
-autoComplete="off"
-inputMode="numeric" maxLength={16}
-class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none"
-/>
-</div>
+                    </div>
 
-<!-- Interest -->
-<div class="flex flex-col gap-[8px] md:col-span-2">
-<label class="font-medium xl:text-xl">Interest<span class="text-[#C9A227]">*</span></label>
+                </div>
 
-<select id="select" 
-class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none">
 
-<option value="">-------- Select --------</option>
-<option>Prayer</option>
-<option>Faith</option>
-<option>Bible Study</option>
-<option>Christian Living</option>
-
-</select>
-
-</div>
-
-<!-- Message -->
-<div class="flex flex-col gap-[8px] md:col-span-2">
-<label class="font-medium xl:text-xl">Message</label>
-
-<textarea
-rows="5"
-placeholder="Tell Us Something...."
-class="border border-[#1F2A44] rounded-[11px] px-2.5 py-[12px] bg-transparent outline-none resize-none"></textarea>
-
-</div>
-
-<p id="errorMsg" class="text-red-500 text-lg font-darker font-medium"></p>
-
-<!-- Button -->
-<div class="md:col-span-2">
-
-<button
-type="submit" id="submit"
-class="w-full bg-[#C9A227] text-white border border-transparent font-semibold py-4 rounded-[10px] hover:bg-transparent hover:border-[#C9A227] hover:text-[#C9A227]">
-
-Submit
-
-</button>
-
-</div>
-
-</div>
-
-</form>
+            </form>
         </div>
 
     </div>
 </section>
-
-
-
-

@@ -43,16 +43,16 @@
 
     <template id="featuredTemplate">
       <div
-        class="border border-[#C9A227] rounded-2xl p-6 grid md:grid-cols-2 gap-8 items-center bg-white shadow-md"
+        class="border border-[#C9A227] rounded-2xl p-6 grid md:grid-cols-2 gap-10 items-center bg-white shadow-md"
       >
         <img class="featured-image w-full h-[320px] object-cover rounded-xl" />
 
         <div>
           <span
-            class="featured-category bg-[#C9A227] text-white px-3 py-1 text-sm rounded-full"
+            class="featured-category bg-[#C9A227] text-white px-[15px] py-[5px] text-sm rounded-full"
           ></span>
 
-          <div class="flex gap-6 text-sm text-[#C9A227] mt-3 mb-3">
+          <div class="flex gap-6 text-sm text-[#C9A227] mt-3 mb-3 border-b border-[#1F2A4480] pb-[13px]">
             <div class="flex items-center gap-2">
               <svg
                 width="34"
@@ -85,7 +85,7 @@
                 </defs>
               </svg>
 
-              <span class="featured-author"></span>
+              <span class="featured-author font-medium"></span>
             </div>
 
             <div class="flex items-center gap-2">
@@ -120,12 +120,12 @@
                 </defs>
               </svg>
 
-              <span class="featured-date"></span>
+              <span class="featured-date font-medium"></span>
             </div>
           </div>
 
           <h3
-            class="featured-title text-[28px] font-bold text-[#1F2A44] mb-3"
+            class="featured-title text-2xl leading-snug font-bold text-[#1F2A44] mb-3"
           ></h3>
 
           <p class="featured-excerpt text-gray-600 mb-4"></p>
@@ -243,7 +243,7 @@
     </template>
 
     <div id="footer"></div>
-
+  <script src="js/header.js"></script>
     <script src="/js/main.js" defer></script>
     <script src="/js/category.js"></script>
   </body>
