@@ -33,11 +33,11 @@ function initHeader() {
 
       if (open) {
         searchInput.classList.remove("w-0", "opacity-0");
-        searchInput.classList.add("w-56", "opacity-100", "ml-2");
+        searchInput.classList.add("w-46", "opacity-100", "ml-2");
         searchInput.focus();
       } else {
         searchInput.classList.add("w-0", "opacity-0");
-        searchInput.classList.remove("w-56", "opacity-100", "ml-2");
+        searchInput.classList.remove("w-46", "opacity-100", "ml-2");
       }
     };
   }
