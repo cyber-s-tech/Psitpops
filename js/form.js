@@ -147,7 +147,7 @@ return;
 captchaWrapper.classList.add("hidden");
 captchaVisible = false;
 // SUCCESS
-form.reset();
+form.submit();
 });
 
 // PHONE INPUT FILTER (LIVE TYPING)
