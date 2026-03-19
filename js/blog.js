@@ -139,9 +139,16 @@ post._embedded["wp:term"][0][0].name;
 clone.querySelector(".latest-title").innerHTML =
 post.title.rendered;
  
-clone.querySelector(".latest-excerpt").innerHTML =
-post.excerpt.rendered;
- 
+clone.querySelector(".latest-excerpt").textContent =
+  post.excerpt.rendered
+    .replace(/\[.*?\]/g,"")
+.replace(/<[^>]*>/g,"")
+.trim()
+.split(/\s+/)
+.slice(0,100)
+.join(" ") + "...";
+
+
 clone.querySelector(".author span").innerText =
 post._embedded["author"][0].name;
  
