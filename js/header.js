@@ -1,5 +1,5 @@
 function initHeader() {
-  const searchBtn = document.getElementById("searchBtn");
+  const searchBtn = document.getElementById("headerSearchBtn");
   const searchInput = document.getElementById("searchInput");
   const mobileBtn = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");

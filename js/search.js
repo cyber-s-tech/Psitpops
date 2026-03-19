@@ -1,14 +1,24 @@
 function initSearch() {
-  const input = document.getElementById("searchBlog");
-  const button = document.getElementById("searchBtn");
-  const suggestionsBox = document.getElementById("suggestions");
 
-  //  STOP if elements not found
-  if (!input || !button || !suggestionsBox) return;
+  // =========================
+  // 🔶 BLOG SEARCH ELEMENTS
+  // =========================
+  const blogInput = document.getElementById("searchBlog");
+  const blogBtn = document.getElementById("searchBtn");
+  const blogSuggestions = document.getElementById("suggestions");
+
+  // =========================
+  // 🔷 HEADER SEARCH ELEMENTS
+  // =========================
+  const headerInput = document.getElementById("searchInput");
+  const headerBtn = document.getElementById("headerSearchBtn");
+  const headerSuggestions = document.getElementById("headerSuggestions");
 
   let posts = [];
 
-  // FETCH BLOGS
+  // =========================
+  // 📡 FETCH BLOG DATA (COMMON)
+  // =========================
   async function fetchBlogs() {
     try {
       const res = await fetch("https://psitpops.ahaanmedia.com/cms/wp-json/wp/v2/posts?_embed");
@@ -19,16 +29,16 @@ function initSearch() {
   }
 
   fetchBlogs();
-  console.log("Input:", input);
-console.log("Button:", button);
 
-  //  INPUT
-  input.addEventListener("input", function () {
+  // =========================
+  // 🧠 COMMON SUGGESTION LOGIC
+  // =========================
+  function handleSuggestions(input, box) {
     const query = input.value.toLowerCase().trim();
-    suggestionsBox.innerHTML = "";
+    box.innerHTML = "";
 
     if (!query) {
-      suggestionsBox.classList.add("hidden");
+      box.classList.add("hidden");
       return;
     }
 
@@ -37,67 +47,130 @@ console.log("Button:", button);
     );
 
     if (!filtered.length) {
-      suggestionsBox.classList.add("hidden");
+      box.classList.add("hidden");
       return;
     }
 
-    suggestionsBox.classList.remove("hidden");
+    box.classList.remove("hidden");
 
     filtered.slice(0, 5).forEach(post => {
-  const title = post.title.rendered.replace(/<[^>]+>/g, "");
-  const image = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
+      const title = post.title.rendered.replace(/<[^>]+>/g, "");
+      const image = post._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
 
-  const div = document.createElement("div");
+      const div = document.createElement("div");
 
-  div.className = `
-    flex items-center gap-3 p-3 cursor-pointer 
-    hover:bg-gray-100 transition-all
-  `;
+      div.className = `
+        flex items-center gap-3 p-3 cursor-pointer 
+        hover:bg-gray-100 transition-all
+      `;
 
-  div.innerHTML = `
-    <img src="${image}" 
-      class="w-12 h-12 object-cover rounded-md flex-shrink-0" />
+      div.innerHTML = `
+        <img src="${image}" 
+          class="w-12 h-12 object-cover rounded-md flex-shrink-0" />
+        <p class="text-sm font-medium text-[#1F2A44] line-clamp-2">
+          ${title}
+        </p>
+      `;
 
-    <p class="text-sm font-medium text-[#1F2A44] line-clamp-2">
-      ${title}
-    </p>
-  `;
+      div.onclick = () => {
+        box.classList.add("hidden");
+        window.location.href = `/blog-details.html?id=${post.id}`;
+      };
 
-  div.onclick = () => {
-  suggestionsBox.classList.add("hidden");
-  window.location.href = `/blog-details.html?id=${post.id}`;
-};
+      box.appendChild(div);
+    });
+  }
 
-  suggestionsBox.appendChild(div);
-});
+  // =========================
+  // 🔶 BLOG INPUT
+  // =========================
+  if (blogInput && blogSuggestions) {
+    blogInput.addEventListener("input", () => {
+      handleSuggestions(blogInput, blogSuggestions);
+    });
+  }
+
+  // =========================
+  // 🔷 HEADER INPUT
+  // =========================
+  if (headerInput && headerSuggestions) {
+    headerInput.addEventListener("input", () => {
+      handleSuggestions(headerInput, headerSuggestions);
+    });
+  }
+
+  // =========================
+  // 🔘 BUTTON CLICK (BOTH)
+  // =========================
+  document.addEventListener("click", function (e) {
+
+    // BLOG BUTTON
+    if (e.target && e.target.id === "searchBtn") {
+      const query = blogInput.value.trim();
+      if (!query) return;
+      window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
+    }
+
+    // HEADER BUTTON
+    if (e.target && e.target.id === "headerSearchBtn") {
+
+      // 🔥 Expand input first
+      if (headerInput.classList.contains("w-0")) {
+        headerInput.classList.remove("w-0", "opacity-0");
+        headerInput.classList.add("w-40", "opacity-100");
+        headerInput.focus();
+        return;
+      }
+
+      // Then search
+      const query = headerInput.value.trim();
+      if (!query) return;
+      window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
+    }
+
   });
 
-  //  BUTTON
+  // =========================
+  // ⌨️ ENTER KEY (BOTH)
+  // =========================
+  document.addEventListener("keypress", function (e) {
+
+    // BLOG ENTER
+    if (e.target && e.target.id === "searchBlog" && e.key === "Enter") {
+      e.preventDefault();
+      const query = e.target.value.trim();
+      if (!query) return;
+      window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
+    }
+
+    // HEADER ENTER
+    if (e.target && e.target.id === "searchInput" && e.key === "Enter") {
+      e.preventDefault();
+      const query = e.target.value.trim();
+      if (!query) return;
+      window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
+    }
+
+  });
+
+  // =========================
+  // ❌ CLOSE SUGGESTIONS ON OUTSIDE CLICK
+  // =========================
   document.addEventListener("click", function (e) {
-  if (e.target && e.target.id === "searchBtn") {
-    const input = document.getElementById("searchBlog");
+    if (!e.target.closest("#searchBlog")) {
+      blogSuggestions?.classList.add("hidden");
+    }
+    if (!e.target.closest("#searchInput")) {
+      headerSuggestions?.classList.add("hidden");
+    }
+  });
 
-    const query = input.value.trim();
-    if (!query) return;
-
-    window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
-  }
-});
-document.addEventListener("keypress", function (e) {
-  if (e.target && e.target.id === "searchBlog" && e.key === "Enter") {
-    e.preventDefault();
-
-    const query = e.target.value.trim();
-    if (!query) return;
-
-    window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
-  }
-});
 }
 
 
-
-//  WAIT FOR DYNAMIC CONTENT
+// =========================
+// ⏳ WAIT FOR TEMPLATE LOAD
+// =========================
 window.addEventListener("load", () => {
-  setTimeout(initSearch, 500); // wait for sidebar render
+  setTimeout(initSearch, 500);
 });
