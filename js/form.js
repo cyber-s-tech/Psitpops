@@ -7,7 +7,6 @@ function generateCaptcha(){
 num1 = Math.floor(Math.random() * 10) + 1;
 num2 = Math.floor(Math.random() * 10) + 1;
 correctAnswer = num1 + num2;
-
 const question = document.getElementById("captchaQuestion");
 if(question){
 question.textContent = `${num1} + ${num2} = ?`;
@@ -47,6 +46,7 @@ const email = form.querySelector("#email");
 const phone = form.querySelector("#phone");
 const select = form.querySelector("#select");
 const captcha = form.querySelector("#captchaInput");
+const captchaWrapper = form.querySelector("#captchaWrapper");
 
 // error elements
 const fnameError = form.querySelector("#fnameError");
@@ -127,28 +127,32 @@ isValid = false;
 }
 
 // 👉 STEP: SHOW CAPTCHA ONLY AFTER VALID FORM
-if(isValid && !captchaVisible){
-captchaWrapper.classList.remove("hidden");
-generateCaptcha();
-captchaVisible = true;
-return; // stop here, wait for next submit
+// ❗ STOP HERE IF INVALID
+if (!isValid) return;
+
+// 👉 SHOW CAPTCHA
+if (!captchaVisible){
+  captchaWrapper.classList.remove("hidden");
+  generateCaptcha();
+  captchaVisible = true;
+  return;
 }
 
-// 👉 STEP: VALIDATE CAPTCHA
-if(captchaVisible){
-if(parseInt(captcha.value) !== correctAnswer){
-showError(captcha,"Wrong answer",captchaError);
-generateCaptcha();
-return;
-}
+// 👉 VALIDATE CAPTCHA
+if (captchaVisible){
+  if (parseInt(captcha.value) !== correctAnswer){
+    showError(captcha,"Wrong answer",captchaError);
+    generateCaptcha();
+    return;
+  }
 }
 
-
+// ✅ SUCCESS (ONLY ONCE)
 captchaWrapper.classList.add("hidden");
 captchaVisible = false;
-// SUCCESS
 form.submit();
 });
+
 
 // PHONE INPUT FILTER (LIVE TYPING)
 document.addEventListener("input", function(e){
