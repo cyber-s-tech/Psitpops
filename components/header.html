@@ -26,15 +26,13 @@
       <!-- RIGHT SIDE -->
       <div class="flex items-center gap-3">
 
-        <!-- SEARCH -->
-        <div class="flex items-center gap-2">
+        <!-- DESKTOP SEARCH -->
+        <div class="hidden md:flex items-center gap-2">
 
-          <input id="searchInput" type="text" placeholder="Search..."
-            class="w-0 opacity-0  h-9 md:h-10 lg:h-13 px-3 text-sm text-slate-900 bg-white rounded-lg shadow transition-all duration-300 outline-none" />
-            <input type="text" placeholder="Search..."
-            class="flex md:hidden sm:hidden w-30 h-9 md:h-10 lg:h-13 px-3 text-sm text-slate-900 bg-white rounded-lg shadow" />
-
-          <button id="searchBtn"
+          <input id="searchInput" type="text" placeholder="Search..."  autocomplete="off"
+            class="w-0 opacity-0 h-9 md:h-10 lg:h-13 px-3 text-sm text-slate-900 bg-white rounded-lg shadow transition-all duration-300 outline-none" />
+  
+          <button id="headerSearchBtn" type="button"
             class="hidden sm:flex w-9 h-9 md:h-10 md:w-10 lg:h-13 lg:w-13 items-center justify-center rounded-lg bg-white text-slate-900 transition hover:bg-slate-100 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
               <path
@@ -42,8 +40,22 @@
               </path>
             </svg>
           </button>
-
+          <div id="headerSuggestions" 
+  class="absolute top-full mx-auto left-5 right-5 max-w-[1440px] bg-white border border-gray-200 rounded-xl mt-2 hidden z-50 shadow-lg overflow-hidden">
+</div>
+ 
         </div>
+         <!-- MOBILE SEARCH -->
+<div class="md:hidden flex items-center ml-2">
+
+<input id="mobileSearchInput" type="text" placeholder="Search..."  autocomplete="off"
+            class=" h-9 px-3 min-[320px]:w-[100px]  min-[360px]:w-[150px] min-[425px]:w-[200px] text-sm text-slate-900 bg-white rounded-lg shadow transition-all duration-300 outline-none " />
+            <div id="mobileSuggestions" 
+  class="absolute top-full mx-auto left-5 right-5 max-w-[1440px] bg-white border border-gray-200 rounded-xl mt-2 hidden z-50 shadow-lg overflow-hidden">
+</div>
+  
+        </div>
+
 
 
 

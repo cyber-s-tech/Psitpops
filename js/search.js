@@ -1,18 +1,19 @@
 function initSearch() {
 
-  // =========================
-  // 🔶 BLOG SEARCH ELEMENTS
-  // =========================
+  //  BLOG SEARCH ELEMENTS  
   const blogInput = document.getElementById("searchBlog");
   const blogBtn = document.getElementById("searchBtn");
   const blogSuggestions = document.getElementById("suggestions");
 
-  // =========================
-  // 🔷 HEADER SEARCH ELEMENTS
-  // =========================
+  //  HEADER SEARCH ELEMENTS
   const headerInput = document.getElementById("searchInput");
   const headerBtn = document.getElementById("headerSearchBtn");
   const headerSuggestions = document.getElementById("headerSuggestions");
+
+  //  MOBILE SEARCH ELEMENTS
+  // 📱 MOBILE
+const mobileInput = document.getElementById("mobileSearchInput");
+const mobileSuggestions = document.getElementById("mobileSuggestions");
 
   let posts = [];
 
@@ -81,27 +82,28 @@ function initSearch() {
     });
   }
 
-  // =========================
-  // 🔶 BLOG INPUT
-  // =========================
+  // BLOG INPUT
   if (blogInput && blogSuggestions) {
     blogInput.addEventListener("input", () => {
       handleSuggestions(blogInput, blogSuggestions);
     });
   }
 
-  // =========================
-  // 🔷 HEADER INPUT
-  // =========================
+  // HEADER INPUT
   if (headerInput && headerSuggestions) {
     headerInput.addEventListener("input", () => {
       handleSuggestions(headerInput, headerSuggestions);
     });
   }
 
-  // =========================
-  // 🔘 BUTTON CLICK (BOTH)
-  // =========================
+  // MOBILE INPUT
+if (mobileInput && mobileSuggestions) {
+  mobileInput.addEventListener("input", () => {
+    handleSuggestions(mobileInput, mobileSuggestions);
+  });
+}
+
+  //  BUTTON CLICK (BOTH)
   document.addEventListener("click", function (e) {
 
     // BLOG BUTTON
@@ -130,9 +132,7 @@ function initSearch() {
 
   });
 
-  // =========================
-  // ⌨️ ENTER KEY (BOTH)
-  // =========================
+  // ⌨️ ENTER KEY (BOTH)  
   document.addEventListener("keypress", function (e) {
 
     // BLOG ENTER
@@ -151,16 +151,25 @@ function initSearch() {
       window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
     }
 
+    // MOBILE ENTER
+if (e.target && e.target.id === "mobileSearchInput" && e.key === "Enter") {
+  e.preventDefault();
+  const query = e.target.value.trim();
+  if (!query) return;
+  window.location.href = `/search.html?query=${encodeURIComponent(query)}`;
+}
+
   });
 
-  // =========================
-  // ❌ CLOSE SUGGESTIONS ON OUTSIDE CLICK
-  // =========================
+  //  CLOSE SUGGESTIONS ON OUTSIDE CLICK
   document.addEventListener("click", function (e) {
     if (!e.target.closest("#searchBlog")) {
       blogSuggestions?.classList.add("hidden");
     }
     if (!e.target.closest("#searchInput")) {
+      headerSuggestions?.classList.add("hidden");
+    }
+    if (!e.target.closest("#mobileSearchInput")) {
       headerSuggestions?.classList.add("hidden");
     }
   });

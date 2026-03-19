@@ -1,5 +1,5 @@
 function initHeader() {
-  const searchBtn = document.getElementById("headerSearchBtn");
+  const headerSearchBtn = document.getElementById("headerSearchBtn");
   const searchInput = document.getElementById("searchInput");
   const mobileBtn = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
@@ -24,23 +24,27 @@ function initHeader() {
     }
   });
 
-  // SEARCH
-  if (searchBtn && searchInput) {
-    let open = false;
+ 
+  if (headerSearchBtn && searchInput) {
+  let open = false;
 
-    searchBtn.onclick = () => {
-      open = !open;
+  headerSearchBtn.onclick = () => {
 
-      if (open) {
-        searchInput.classList.remove("w-0", "opacity-0");
-        searchInput.classList.add("w-46", "opacity-100", "ml-2");
-        searchInput.focus();
-      } else {
-        searchInput.classList.add("w-0", "opacity-0");
-        searchInput.classList.remove("w-46", "opacity-100", "ml-2");
-      }
-    };
-  }
+    //  DO NOTHING on mobile
+    if (window.innerWidth < 768) return;
+
+    open = !open;
+
+    if (open) {
+      searchInput.classList.remove("md:w-0", "md:opacity-0");
+      searchInput.classList.add("md:w-46", "md:opacity-100", "ml-2");
+      searchInput.focus();
+    } else {
+      searchInput.classList.add("md:w-0", "md:opacity-0");
+      searchInput.classList.remove("md:w-46", "md:opacity-100", "ml-2");
+    }
+  };
+}
 
   // MOBILE MENU
   if (mobileBtn && mobileMenu) {
