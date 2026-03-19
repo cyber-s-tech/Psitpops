@@ -11,12 +11,17 @@
       </div>
 
       <!-- DESKTOP NAV -->
-    <nav class="hidden mr-6 rounded-[10px] bg-white/10 p-2 lg:p-[10px] font-medium backdrop-blur-md text-sm lg:text-base sm:flex items-center gap-2">
- <a href="/" class="nav-link rounded-[10px] lg:px-5 lg:py-[10px] px-4 py-[6px] text-white/80 hover:text-white transition-all">Home</a>
-  <a href="/about.html" class="nav-link rounded-[10px] lg:px-5 lg:py-[10px] px-4 py-[6px] text-white/80 hover:text-white transition-all">About</a>
-  <a href="/all-blogs.html" class="nav-link rounded-[10px] lg:px-5 lg:py-[10px] px-4 py-[6px] text-white/80 hover:text-white transition-all">Blog</a>
-  <a href="/contact.html" class="nav-link rounded-[10px] lg:px-5 lg:py-[10px] px-4 py-[6px] text-white/80 hover:text-white transition-all">Contact</a>
-</nav>
+      <nav
+        class="hidden rounded-[10px] bg-white/10 p-2 lg:p-[10px] font-medium backdrop-blur-md text-sm lg:text-base md:flex items-center gap-2">
+        <a href="/"
+          class="nav-link rounded-[10px] lg:px-5 lg:py-[10px] px-4 py-[6px] text-white/80 hover:text-white transition-all">Home</a>
+        <a href="/about.html"
+          class="nav-link rounded-[10px] lg:px-5 lg:py-[10px] px-4 py-[6px] text-white/80 hover:text-white transition-all">About</a>
+        <a href="/all-blogs.html"
+          class="nav-link rounded-[10px] lg:px-5 lg:py-[10px] px-4 py-[6px] text-white/80 hover:text-white transition-all">Blog</a>
+        <a href="/contact.html"
+          class="nav-link rounded-[10px] lg:px-5 lg:py-[10px] px-4 py-[6px] text-white/80 hover:text-white transition-all">Contact</a>
+      </nav>
 
       <!-- RIGHT SIDE -->
       <div class="flex items-center gap-3">
@@ -25,10 +30,12 @@
         <div class="flex items-center gap-2">
 
           <input id="searchInput" type="text" placeholder="Search..."
-            class="w-0 opacity-0 h-12 md:h-10 lg:h-13 px-3 text-sm text-slate-900 bg-white rounded-lg shadow transition-all duration-300 outline-none" />
+            class="w-0 opacity-0  h-9 md:h-10 lg:h-13 px-3 text-sm text-slate-900 bg-white rounded-lg shadow transition-all duration-300 outline-none" />
+            <input type="text" placeholder="Search..."
+            class="flex md:hidden sm:hidden w-30 h-9 md:h-10 lg:h-13 px-3 text-sm text-slate-900 bg-white rounded-lg shadow" />
 
           <button id="searchBtn"
-            class="flex w-9 h-9 md:h-10 md:w-10 lg:h-13 lg:w-13 items-center justify-center rounded-lg bg-white text-slate-900 transition hover:bg-slate-100">
+            class="hidden sm:flex w-9 h-9 md:h-10 md:w-10 lg:h-13 lg:w-13 items-center justify-center rounded-lg bg-white text-slate-900 transition hover:bg-slate-100 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
               <path
                 d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z">
@@ -42,8 +49,8 @@
 
         <!-- HAMBURGER -->
         <div id="mobile-menu-btn"
-          class="sm:hidden flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white border border-white/20">
-          <svg  xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor"
+          class="md:hidden flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white border border-white/20">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" stroke="currentColor"
             stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
@@ -54,7 +61,6 @@
   </div>
 
   <div id="mobile-menu" class="hidden bg-slate-900/75 backdrop-blur-xl border-t border-white/10 sm:hidden">
-
     <div class="p-6 flex flex-col gap-4 text-center">
       <a href="/" class="text-lg font-medium text-white py-2 border-b border-white/5">Home</a>
       <a href="/about.html" class="text-lg font-medium text-white/70 py-2 border-b border-white/5">About</a>
@@ -62,6 +68,6 @@
       <a href="/contact.html" class="text-lg font-medium text-white/70 py-2">Contact</a>
     </div>
 
-</div>
+  </div>
 
 </header>
