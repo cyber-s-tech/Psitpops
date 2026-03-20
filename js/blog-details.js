@@ -234,7 +234,11 @@ ${item._embedded["wp:term"][0][0].name}
 
 <hr class="mb-4">
 
+<<<<<<< HEAD
+<h3 class="text-[20px] font-darker font-semibold text-[#1F2A44] mb-2 leading-snug">
+=======
 <h3 class="text-[20px] font-bold text-[#1F2A44] mb-2 leading-tight">
+>>>>>>> c4385c1c5e12a4b9579f342d14619e6cd1ba0521
 ${item.title.rendered}
 </h3>
 
