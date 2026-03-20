@@ -4,6 +4,8 @@ function initHeader() {
   const mobileBtn = document.getElementById("mobile-menu-btn");
   const mobileMenu = document.getElementById("mobile-menu");
   const links = document.querySelectorAll(".nav-link");
+   const overlay = document.getElementById("menu-overlay");
+  const closeBtn = document.getElementById("close-menu");
 
   // AUTO ACTIVE NAV
   const currentPath = window.location.pathname;
@@ -52,17 +54,15 @@ function initHeader() {
       mobileMenu.classList.toggle("hidden");
     };
   }
-}
-const menu = document.getElementById('mobile-menu');
-const overlay = document.getElementById('menu-overlay');
-const openBtn = document.getElementById('your-hamburger-button-id'); // Replace with your actual button ID
-const closeBtn = document.getElementById('close-menu');
+  function toggleMenu() {
+    mobileMenu.classList.toggle("translate-x-full");
+    overlay.classList.toggle("hidden");
+  }
 
-function toggleMenu() {
-    menu.classList.toggle('translate-x-full');
-    overlay.classList.toggle('hidden');
+  if (mobileBtn && mobileMenu && overlay && closeBtn) {
+    mobileBtn.addEventListener("click", toggleMenu);
+    closeBtn.addEventListener("click", toggleMenu);
+    overlay.addEventListener("click", toggleMenu);
+  }
 }
 
-openBtn.addEventListener('click', toggleMenu);
-closeBtn.addEventListener('click', toggleMenu);
-overlay.addEventListener('click', toggleMenu); // Closes menu when clicking outside
