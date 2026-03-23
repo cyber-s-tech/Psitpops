@@ -27,7 +27,7 @@ fetch(`${domain}/posts?_embed&per_page=100`)
 
         let htmlContent = `
 <div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
- <div class="flex flex-col md:flex-row bg-white rounded-[20px] overflow-hidden mb-12 border border-[#E5C367] shadow-sm gap-10 p-5">
+ <div class="flex flex-col md:flex-row bg-white rounded-[20px] overflow-hidden mb-12 border border-[#E5C367] shadow-sm gap-10 p-3 md:p-5">
   
   <div class="md:w-[480px] relative flex items-center justify-center min-h-[318px]">
     <div class="absolute inset-0 flex flex-col items-center justify-center text-center">
@@ -74,7 +74,7 @@ fetch(`${domain}/posts?_embed&per_page=100`)
                   />
                 </defs>
               </svg>
-        <span class="font-medium text-sm">${featuredAuthor}</span>
+        <span class="text-[12px] md:text-base">${featuredAuthor}</span>
       </div>
       <div class="flex items-center gap-2">
         <svg
@@ -107,7 +107,7 @@ fetch(`${domain}/posts?_embed&per_page=100`)
                   />
                 </defs>
               </svg>
-        <span class="font-medium text-sm">${featuredDate}</span>
+        <span class="text-[12px] md:text-base">${featuredDate}</span>
       </div>
     </div>
 
@@ -158,7 +158,7 @@ fetch(`${domain}/posts?_embed&per_page=100`)
     </span>
   </div>
 
-  <div class="p-6">
+  <div class="p-2 md:p-6">
     <div class="flex items-center gap-4 mb-3 text-[#C9A227] font-medium text-sm">
       <div class="flex items-center gap-1.5">
          <svg
@@ -191,7 +191,7 @@ fetch(`${domain}/posts?_embed&per_page=100`)
                   />
                 </defs>
               </svg>
-        <span>${authorName}</span>
+        <span class="text-[12px] md:text-base">${authorName}</span>
       </div>
       <div class="flex items-center gap-1.5">
         <svg
@@ -224,7 +224,7 @@ fetch(`${domain}/posts?_embed&per_page=100`)
                   />
                 </defs>
               </svg>
-        <span>${formattedDate}</span>
+        <span class="text-[12px] md:text-base">${formattedDate}</span>
       </div>
     </div>
 
