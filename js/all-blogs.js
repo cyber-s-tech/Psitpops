@@ -26,7 +26,7 @@ fetch(`${domain}/posts?_embed&per_page=100`)
         });
 
         let htmlContent = `
-<div class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
+<div id="featuredCard" class="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20">
  <div class="flex flex-col md:flex-row bg-white rounded-[20px] overflow-hidden mb-12 border border-[#E5C367] shadow-sm gap-10 p-3 md:p-5">
   
   <div class="md:w-[480px] relative flex items-center justify-center min-h-[318px]">
@@ -149,7 +149,7 @@ fetch(`${domain}/posts?_embed&per_page=100`)
 
             htmlContent += `
            
-        <div class="bg-white border border-[#E5C367]/30 rounded-[20px] overflow-hidden shadow-sm hover:shadow-md transition-all group">
+        <div class="blog-grid-card bg-white border border-[#E5C367]/30 rounded-[20px] overflow-hidden shadow-sm hover:shadow-md transition-all group">
   <div class="relative w-full h-48 overflow-hidden">
     <img src="${image}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${post.title.rendered}">
     
