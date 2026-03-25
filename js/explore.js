@@ -24,30 +24,32 @@ async function initTopicsOnly() {
 
         container.innerHTML = "";
 
-        categories.forEach(async (cat) => {
+     for (const cat of categories) {
 
-            const clone = template.content.cloneNode(true);
-            const card = clone.querySelector(".topic-card");
-            const img = clone.querySelector(".topic-image");
+    const clone = template.content.cloneNode(true);
+    const card = clone.querySelector(".topic-card");
+    const img = clone.querySelector(".topic-image");
 
-            clone.querySelector(".topic-title").innerText = cat.name;
-            card.href = `category.html?id=${cat.id}&name=${encodeURIComponent(cat.name)}`;
+    clone.querySelector(".topic-title").innerText = cat.name;
+    card.href = `category.html?id=${cat.id}&name=${encodeURIComponent(cat.name)}`;
 
-            // Fetch image from ACF media ID
-            if (cat.acf && cat.acf.category_image) {
-                try {
-                    const mediaRes = await fetch(`${domain}/media/${cat.acf.category_image}`);
-                    const media = await mediaRes.json();
-                    img.src = media.source_url;
-                } catch (e) {
-                    img.src = "/images/default-topic.jpg";
-                }
-            } else {
-                img.src = "/images/default-topic.jpg";
-            }
+    if (cat.acf && cat.acf.category_image) {
+        try {
+            const mediaRes = await fetch(`${domain}/media/${cat.acf.category_image}`);
+            const media = await mediaRes.json();
+            img.src = media.source_url;
+        } catch (e) {
+            img.src = "/images/default-topic.jpg";
+        }
+    } else {
+        img.src = "/images/default-topic.jpg";
+    }
 
-            container.appendChild(clone);
-        });
+    container.appendChild(clone);
+}
+        if (typeof initBlogAnimations === "function") {
+            initBlogAnimations();
+        }
 
     } catch (err) {
         console.error("Fetch Error:", err);
